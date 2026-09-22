@@ -112,8 +112,8 @@ button { cursor: pointer; }
   .strip .phones-txt { white-space: nowrap; }
   .top .wrap { min-height: 3.8rem; gap: 0.6rem; }
   .brand img { width: 2.3rem; height: 2.3rem; }
-  .brand b { font-size: 1.25rem; }
-  .brand span { display: none; }
+  .brand b { font-size: 1.2rem; }
+  .brand span { display: block; font-size: 0.62rem; line-height: 1.15; margin-top: 0.1rem; max-width: 9.5rem; }
   .nav .btn.small { padding: 0.5rem 0.85rem; font-size: 0.95rem; white-space: nowrap; }
   .nav .btn.small .long { display: none; }
   .hero h1 { font-size: clamp(2.1rem, 9.5vw, 2.6rem); }
