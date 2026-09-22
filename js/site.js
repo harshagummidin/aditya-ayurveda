@@ -335,6 +335,16 @@
     });
   }
   addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  /* floating bottom bar: hidden while the hero (which has its own buttons) or the booking form is on screen */
+  const sticky = $("#stickyCta");
+  if (sticky && "IntersectionObserver" in window) {
+    const vis = { hero: true, book: false };
+    const sio = new IntersectionObserver((ents) => {
+      ents.forEach((en) => { vis[en.target.id] = en.isIntersecting; });
+      sticky.classList.toggle("hide", vis.hero || vis.book);
+    }, { threshold: 0.05 });
+    ["hero", "book"].forEach((id) => { const n = document.getElementById(id); if (n) sio.observe(n); });
+  } else if (sticky) { sticky.classList.remove("hide"); }
   /* floating lotus petals in the hero */
   const petals = $("#petals");
   if (petals && !reduce) {
