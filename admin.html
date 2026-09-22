@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aditya Hospital · Staff</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/admin.css">
+<script>(function(){document.documentElement.classList.add("js");var t="dark";try{t=localStorage.getItem("ad_theme")||"dark";}catch(e){}document.documentElement.setAttribute("data-theme",t);})();</script>
+</head>
+<body class="admin">
+
+<!-- Sign in -->
+<section class="login" id="loginView">
+  <form class="login-card" id="loginForm" novalidate>
+    <img src="assets/mark.png" alt="" width="56" height="56">
+    <h1>Staff sign in</h1>
+    <p class="muted">Appointments, analytics and availability for Aditya Ayurvedic Hospital.</p>
+    <div class="field">
+      <label for="lUser">Username</label>
+      <input id="lUser" autocomplete="username" autocapitalize="off" required>
+    </div>
+    <div class="field">
+      <label for="lPass">Password</label>
+      <input id="lPass" type="password" autocomplete="current-password" required>
+    </div>
+    <p class="err" id="loginErr" hidden>That username and password do not match.</p>
+    <button class="btn pink block" type="submit">Sign in</button>
+    <p class="demo-hint">Demo login: <code>admin</code> / <code>aditya@2026</code></p>
+    <a class="back" href="index.html">Back to website</a>
+  </form>
+</section>
+
+<!-- App -->
+<div class="app" id="appView" hidden>
+  <aside class="side">
+    <a class="brand" href="index.html">
+      <img src="assets/mark.png" alt="" width="40" height="40">
+      <div><b>Aditya</b><span>Staff console</span></div>
+    </a>
+    <nav class="side-nav" aria-label="Sections">
+      <button class="sn on" data-view="overview">Overview</button>
+      <button class="sn" data-view="appointments">Appointments <span class="count" id="pendingCount"></span></button>
+      <button class="sn" data-view="analytics">Analytics</button>
+      <button class="sn" data-view="availability">Availability</button>
+    </nav>
+    <div class="side-foot">
+      <span class="demo-badge">Demo data</span>
+      <button class="sn" id="resetBtn">Reset demo data</button>
+      <button class="sn" id="themeBtn">Dark mode</button>
+      <button class="sn" id="logoutBtn">Sign out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="main-head">
+      <div>
+        <h1 id="viewTitle">Overview</h1>
+        <p class="muted" id="viewSub"></p>
+      </div>
+      <a class="btn small" href="index.html" target="_blank" rel="noopener">View website</a>
+    </header>
+
+    <!-- Overview -->
+    <section class="view" data-view="overview">
+      <div class="kpis" id="kpis"></div>
+      <div class="two">
+        <div class="panel">
+          <h2>Today's schedule</h2>
+          <div id="todayList" class="list"></div>
+        </div>
+        <div class="panel">
+          <h2>New requests</h2>
+          <div id="pendingList" class="list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Appointments -->
+    <section class="view" data-view="appointments" hidden>
+      <div class="toolbar">
+        <input id="q" type="search" placeholder="Search name, mobile or booking ID" aria-label="Search">
+        <select id="fStatus" aria-label="Status">
+          <option value="">All statuses</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="completed">Completed</option>
+          <option value="no_show">No-show</option>
+          <option value="rejected">Rejected</option>
+        </select>
+        <select id="fDoctor" aria-label="Physician">
+          <option value="">Both physicians</option>
+          <option value="raghuram">Dr. Raghuram</option>
+          <option value="usha">Dr. Usha</option>
+          <option value="any">Either / unassigned</option>
+        </select>
+        <select id="fRange" aria-label="Date range">
+          <option value="upcoming">Upcoming</option>
+          <option value="today">Today</option>
+          <option value="past">Past</option>
+          <option value="all">All dates</option>
+        </select>
+        <button class="btn small" id="csvBtn" type="button">Export CSV</button>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl" id="apptTable">
+          <thead>
+            <tr><th>Booking</th><th>Patient</th><th>Physician</th><th>When</th><th>Reason</th><th>Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="pager" id="pager"></div>
+    </section>
+
+    <!-- Analytics -->
+    <section class="view" data-view="analytics" hidden>
+      <div class="toolbar">
+        <div class="seg" id="rangeSeg">
+          <label class="on"><input type="radio" name="range" value="7" checked>7 days</label>
+          <label><input type="radio" name="range" value="14">14 days</label>
+          <label><input type="radio" name="range" value="30">30 days</label>
+        </div>
+        <span class="muted small" id="rangeNote"></span>
+      </div>
+      <div class="kpis" id="aKpis"></div>
+      <div class="charts">
+        <div class="panel wide"><h2>Visits and bookings per day</h2><div class="ch"><canvas id="cDaily"></canvas></div></div>
+        <div class="panel"><h2>Where visitors come from</h2><div class="ch"><canvas id="cSource"></canvas></div></div>
+        <div class="panel"><h2>Devices</h2><div class="ch"><canvas id="cDevice"></canvas></div></div>
+        <div class="panel"><h2>Booking funnel</h2><div id="funnel" class="funnel"></div></div>
+        <div class="panel"><h2>Sections people read</h2><div class="ch"><canvas id="cSections"></canvas></div></div>
+        <div class="panel"><h2>Bookings by physician</h2><div class="ch"><canvas id="cDoctor"></canvas></div></div>
+        <div class="panel"><h2>Reasons for visit</h2><div class="ch"><canvas id="cReason"></canvas></div></div>
+        <div class="panel"><h2>Hour of day visitors browse</h2><div class="ch"><canvas id="cHours"></canvas></div></div>
+        <div class="panel"><h2>Most requested slots</h2><div class="ch"><canvas id="cSlots"></canvas></div></div>
+        <div class="panel"><h2>Contact taps</h2><div class="ch"><canvas id="cCta"></canvas></div></div>
+      </div>
+    </section>
+
+    <!-- Availability -->
+    <section class="view" data-view="availability" hidden>
+      <form class="panel settings" id="settingsForm">
+        <h2>Consultation days</h2>
+        <div class="days" id="days"></div>
+        <h2>Timings</h2>
+        <div class="grid2">
+          <div class="field"><label>Morning</label><div class="times"><input type="time" id="w0s"> <span>to</span> <input type="time" id="w0e"></div></div>
+          <div class="field"><label>Evening</label><div class="times"><input type="time" id="w1s"> <span>to</span> <input type="time" id="w1e"></div></div>
+        </div>
+        <div class="grid3">
+          <div class="field"><label for="slotMin">Slot length</label><select id="slotMin"><option value="15">15 minutes</option><option value="20">20 minutes</option><option value="30">30 minutes</option></select></div>
+          <div class="field"><label for="fee">Consultation fee shown</label><input id="fee" placeholder="₹ 300"></div>
+          <div class="field"><label for="daysAhead">Booking window</label><select id="daysAhead"><option value="7">1 week ahead</option><option value="14">2 weeks ahead</option><option value="21">3 weeks ahead</option><option value="30">30 days ahead</option></select></div>
+        </div>
+        <h2>Blocked dates</h2>
+        <p class="muted small">Holidays, conferences, leave. Patients cannot book these days.</p>
+        <div class="times"><input type="date" id="blockDate"> <button class="btn small" type="button" id="blockAdd">Block this date</button></div>
+        <div class="chips" id="blocked"></div>
+        <div class="actions"><button class="btn pink" type="submit">Save availability</button><span class="muted small">Changes apply to the booking form immediately.</span></div>
+      </form>
+    </section>
+  </main>
+</div>
+
+<!-- Detail / action modal -->
+<div class="modal" id="detailModal" hidden role="dialog" aria-modal="true">
+  <div class="card wide">
+    <div class="m-head"><h3 id="dTitle">Appointment</h3><button class="x" id="dClose" aria-label="Close">×</button></div>
+    <div id="dBody"></div>
+    <div class="field" style="margin-top:1rem"><label for="dNote">Staff note</label><textarea id="dNote" placeholder="Internal note, visible only here"></textarea></div>
+    <div class="m-actions" id="dActions"></div>
+  </div>
+</div>
+
+<!-- Confirm modal -->
+<div class="modal" id="confirmModal" hidden role="dialog" aria-modal="true">
+  <div class="card">
+    <h3 id="cTitle">Are you sure?</h3>
+    <p class="muted" id="cText" style="margin-top:.5rem"></p>
+    <div class="field" id="cReasonWrap" style="margin-top:1rem" hidden><label for="cReason">Reason shared with the patient</label><input id="cReason" placeholder="e.g. Doctor on leave, please rebook"></div>
+    <div class="m-actions"><button class="btn pink small" id="cYes">Confirm</button><button class="btn small" id="cNo" type="button">Cancel</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="js/config.js"></script>
+<script src="js/store.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
