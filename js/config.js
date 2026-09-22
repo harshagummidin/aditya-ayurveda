@@ -26,7 +26,8 @@ window.AD_CONFIG = {
     social: {
       facebook: "https://www.facebook.com/ayurvedaaditya/",
       youtube: "https://www.youtube.com/@adityaayurvedichospital",
-      instagram: "https://www.instagram.com/"
+      instagram: "https://www.instagram.com/",
+      practo: "https://www.practo.com/rajahmundry/doctor/suri-raghuram-ayurveda?specialization=Ayurveda"
     },
     reach: [
       { how: "By bus or car", text: "ILTD Junction is on the Rajahmundry–Kakinada main road. Buses from Amalapuram, Razole and Bhimavaram stop at the junction; the hospital building is visible from it." },
@@ -156,7 +157,14 @@ window.AD_CONFIG = {
   ],
 
   panchakarma: {
-    intro: "Aditya is one of very few hospitals in Andhra Pradesh doing original Kerala Panchakarma, not massage sold under that name. Every procedure is prescribed by an MD physician and done by trained therapists in a dedicated theatre.",
+    intro: "Panchakarma means five bio-cleansing therapies. Ayurveda treats disease two ways: Shamana settles symptoms with medicine, Shodhana removes the cause from the body. Panchakarma is Shodhana, and Aditya is one of very few hospitals in Andhra Pradesh doing the original Kerala procedures, prescribed by an MD physician and done by trained therapists.",
+    classical: [
+      { name: "Vamana", text: "Therapeutic emesis", uses: "Asthma, psoriasis, white patches" },
+      { name: "Virechana", text: "Therapeutic purgation", uses: "Skin disease, gut disorders, jaundice, spleen enlargement" },
+      { name: "Vasti", text: "Medicated enema", uses: "Paralysis, facial palsy, arthritis, spine, infertility" },
+      { name: "Nasya", text: "Medicated oil through the nose", uses: "Migraine, sinusitis, allergy, facial palsy, early grey hair" },
+      { name: "Rakta Mokshana", text: "Blood-letting", uses: "Eczema, psoriasis, diabetic wounds, skin infection" }
+    ],
     benefits: [
       "Removes toxins and prevents disease before it appears",
       "Treats conditions where surgery is offered as the only option",
@@ -166,13 +174,71 @@ window.AD_CONFIG = {
       "Lowers stress, improves sleep and slows ageing"
     ],
     therapies: [
-      { name: "Abhyanga", text: "Whole-body warm medicated oil therapy, the base of every course.", img: "assets/therapy-abhyanga.jpg" },
-      { name: "Siro Dhara", text: "A steady stream of warm oil on the forehead for stress, insomnia and migraine.", img: "assets/therapy-sirodhara.jpg" },
-      { name: "Pizhichil", text: "Oil bath with continuous pouring, for paralysis and arthritis.", img: "assets/therapy-pizhichil.jpg" },
-      { name: "Siro Vasti", text: "Oil held on the crown of the head for neurological and psychiatric conditions.", img: "assets/therapy-sirovasti.jpg" },
-      { name: "Elakizhi", text: "Herbal leaf bundle fomentation for joint pain and stiffness.", img: "assets/therapy-elakizhi.jpg" },
-      { name: "Uttara Basti", text: "Intra-uterine medicated oil procedure for tubal block, low AMH and PCOD. Dr. Usha's speciality.", img: "assets/gallery-panchakarma-room.jpg" }
+      { name: "Abhyanga", text: "Whole-body warm medicated oil therapy for joint stiffness, spondylosis, low back pain and sports injuries.", dur: "45–60 min · 7–21 days", img: "assets/therapy-abhyanga.jpg" },
+      { name: "Siro Dhara", text: "A steady stream of warm oil on the forehead for stress, insomnia and psychiatric conditions.", dur: "45–60 min · 3–21 days", img: "assets/therapy-sirodhara.jpg" },
+      { name: "Pizhichil", text: "Warm oil poured over the whole body in rhythm with massage, for arthritis, paralysis and muscular weakness.", dur: "60–90 min · 7–21 days", img: "assets/therapy-pizhichil.jpg" },
+      { name: "Siro Vasti", text: "Oil retained on the crown of the head for facial palsy, migraine, insomnia, memory and concentration.", dur: "45–60 min · 3–7 days", img: "assets/therapy-sirovasti.jpg" },
+      { name: "Elakizhi", text: "Warm herbal-leaf boluses for chronic back pain, arthritis, paralysis and joint swelling.", dur: "45 min · 7–14 days", img: "assets/therapy-elakizhi.jpg" },
+      { name: "Nadi Sweda", text: "Herbal steam directed at a joint or the spine for disc pain, sprain and osteoarthritis.", dur: "10–15 min · 3–21 days", img: "assets/therapy-nadi-sweda.jpg" },
+      { name: "Greeva / Kati Vasti", text: "Warm oil pooled over the neck or low back inside a dough ring, for disc and spine complaints.", dur: "30–45 min · 7–14 days", img: "assets/therapy-greeva-vasti.jpg" },
+      { name: "Netra Tarpana", text: "Medicated ghee held over the eyes for strain, burning, early cataract and glaucoma support.", dur: "15–30 min · 3–8 days", img: "assets/therapy-netra-tarpana.jpg" },
+      { name: "Uttara Basti", text: "Medicated oil into the uterus or bladder for tubal block, low AMH, low sperm count and motility. The only hospital in East Godavari offering it.", dur: "1 hour · 3–7 sittings", img: "assets/gallery-panchakarma-room.jpg" }
     ]
+  },
+
+  consult: [
+    { title: "In person at ILTD Junction", text: "Walk in or book a slot. Doctors are on the premises morning to night, Monday to Saturday.", cta: "Book a slot", href: "#book", icon: "clinic" },
+    { title: "Video consultation", text: "For patients far from Rajahmundry. WhatsApp or Skype video call at the regular fee of ₹150; one payment covers a second call after you send reports. Medicines follow by DTDC courier with prescription and GST bill.", cta: "Book online", href: "#book", icon: "video", mode: "online" },
+    { title: "Free second opinion before surgery", text: "Spine disc problems, piles, fissure and fistula, arthritis and stomach ulcers are often treated without surgery. Send MRI, CT or discharge summary and ask Dr. Raghuram first.", cta: "Ask for an opinion", href: "#book", icon: "opinion", visit: "Second opinion before surgery" },
+    { title: "Medicines by courier", text: "Follow-up patients can have prescribed medicines couriered anywhere in India. Aditya Herbals cosmetics and OTC products are sent to new customers too.", cta: "WhatsApp the pharmacy", href: "whatsapp", icon: "courier" }
+  ],
+
+  whyAditya: [
+    "Panchakarma, Kshara Sutra, gynaecology, cosmetology, infertility and paediatric Ayurveda under one roof",
+    "Every medicine GMP and API certified; dispensed with a prescription and GST bill, never secret or unlabelled",
+    "Treatment protocols tested in clinical practice, not folklore",
+    "Two Panchakarma procedures can run at the same time; separate operation theatre for ano-rectal cases",
+    "Among the most reasonable fees in the city and district",
+    "Five minutes from Rajahmundry railway station by auto, bus or car"
+  ],
+
+  ksharaSutra: {
+    title: "Kshara Sutra: piles, fissure and fistula without conventional surgery",
+    text: "A medicated thread technique first described by Sushruta, practised at Aditya in a dedicated operation theatre. Patients usually go home the same day and continue normal work during the course.",
+    points: [
+      "Effective in complex and recurrent fistula",
+      "Minimal hospital stay, most patients discharged the same day",
+      "Very little tissue damage, so incontinence and stricture are practically unknown",
+      "Much lower cost than conventional surgery",
+      "Recurrence far below that of surgery"
+    ]
+  },
+
+  results: [
+    { img: "assets/result-psoriasis-1.jpg", title: "Psoriasis", text: "Plaque on the thigh before and after treatment." },
+    { img: "assets/result-psoriasis-2.jpg", title: "Psoriasis", text: "Extensive lesions on the arm cleared." },
+    { img: "assets/result-scalp-psoriasis.jpg", title: "Scalp psoriasis", text: "Seborrhoeic dermatitis of the scalp." },
+    { img: "assets/result-plantar-psoriasis.jpg", title: "Plantar psoriasis", text: "Cracked, thickened soles restored." }
+  ],
+
+  videos: [
+    { id: "WwDUxRiwJGs", title: "Piles cure without surgery" },
+    { id: "l_orJN6EqWA", title: "Uterine fibroids and infertility" },
+    { id: "Nizf-Be9YBU", title: "Migraine treatment (Telugu)" },
+    { id: "rmDg4U1UKZc", title: "White patches on skin, lips and face" },
+    { id: "G7zMVhaqAI8", title: "Osteoporosis: treatment and exercise" },
+    { id: "QrEFbqYaakY", title: "Vomiting in pregnancy: Ayurvedic care" }
+  ],
+
+  ayurveda: {
+    intro: "Ayurveda is a system of medicine, not a set of beliefs. Its medicines have measurable pharmacology and are tested the same way any drug is.",
+    facts: [
+      { n: "8", t: "medical branches defined in the Charaka Samhita around 2,300 years ago" },
+      { n: "40%", t: "of modern medicines are derived from plants, the source Ayurveda studied first" },
+      { n: "GMP · API", t: "standards every Aditya medicine follows: species and alkaloid content standardised" },
+      { n: "0", t: "magic pills. Efficacy is tested in single and double-blind clinical studies" }
+    ],
+    branches: ["Kayachikitsa · internal medicine", "Shalya Tantra · surgery", "Shalakya · eye, ENT and dental", "Kaumarabhritya · children and pregnancy", "Bhuta Vidya · psychiatry", "Agada Tantra · toxicology", "Rasayana · rejuvenation", "Vajikarana · fertility and vitality"]
   },
 
   herbals: {
@@ -201,8 +267,8 @@ window.AD_CONFIG = {
       { label: "Evening", start: "16:00", end: "19:30" }
     ],
     slotMinutes: 20,
-    fee: "₹ 300",
-    feeNote: "Consultation fee, indicative",
+    fee: "₹ 150",
+    feeNote: "Consultation fee (in person or video)",
     daysAhead: 21,
     blockedDates: []
   },

@@ -91,10 +91,44 @@
     '<div class="wcol"><figure class="wimg"><img src="assets/womens-hair.jpg" alt="Scalp and hair treatments" loading="lazy"></figure><h3>Hair care</h3><p class="sub">Strengthen hair from root to tip.</p><ul>' + grp("Hair").items.map((i) => "<li>" + esc(i) + "</li>").join("") + "</ul></div>" +
     '<div class="wcol"><figure class="wimg"><img src="assets/womens-wellness.jpg" alt="Siro Dhara therapy" loading="lazy"></figure><h3>Wellness</h3><p class="sub">Detox, rejuvenation and stress relief.</p><ul>' + grp("Wellness").items.map((i) => "<li>" + esc(i) + "</li>").join("") + "</ul></div>";
 
+  /* ---------- ways to consult ---------- */
+  const ICONS = {
+    clinic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V9l9-6 9 6v12M9 21v-6h6v6M12 10v4M10 12h4"/></svg>',
+    video: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg>',
+    opinion: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg>',
+    courier: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7l9-4 9 4-9 4-9-4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>'
+  };
+  const waHrefEarly = "https://wa.me/" + C.clinic.whatsapp + "?text=" + encodeURIComponent("Namaste Aditya Herbals, I would like to order medicines by courier.");
+  $("#consultGrid").innerHTML = C.consult.map((c) => '<article class="ccard"><div class="cico">' + ICONS[c.icon] + "</div><h3>" + esc(c.title) + "</h3><p>" + esc(c.text) + '</p><a class="btn small' + (c.icon === "clinic" ? " pink" : "") + '" href="' + (c.href === "whatsapp" ? waHrefEarly : c.href) + '"' + (c.href === "whatsapp" ? ' target="_blank" rel="noopener" data-cta="whatsapp"' : "") + (c.mode ? ' data-mode="online"' : "") + (c.visit ? ' data-visit="' + esc(c.visit) + '"' : "") + ">" + esc(c.cta) + "</a></article>").join("");
+
   /* ---------- panchakarma ---------- */
   $("#pkIntro").textContent = C.panchakarma.intro;
+  $("#fiveGrid").innerHTML = C.panchakarma.classical.map((k, i) => '<div class="fk"><span class="n">' + (i + 1) + "</span><b>" + esc(k.name) + '</b><span class="what">' + esc(k.text) + '</span><span class="uses">' + esc(k.uses) + "</span></div>").join("");
+  const KS = C.ksharaSutra;
+  $("#kshara").innerHTML = '<div class="ks-txt"><div class="gold-rule"></div><h3>' + esc(KS.title) + "</h3><p>" + esc(KS.text) + '</p><a class="btn small" href="#book" data-visit="Second opinion before surgery">Ask about Kshara Sutra</a></div><ul class="ks-list">' + KS.points.map((p) => "<li>" + CHECK + "<span>" + esc(p) + "</span></li>").join("") + "</ul>";
+
+  /* ---------- results ---------- */
+  $("#resGrid").innerHTML = C.results.map((r) => '<figure class="res"><img src="' + r.img + '" alt="' + esc(r.title) + ' before and after treatment" loading="lazy"><figcaption><b>' + esc(r.title) + "</b><span>" + esc(r.text) + "</span></figcaption></figure>").join("");
+
+  /* ---------- why ---------- */
+  $("#whyList").innerHTML = C.whyAditya.map((w) => "<li>" + esc(w) + "</li>").join("");
+
+  /* ---------- videos (thumbnail first, iframe on tap) ---------- */
+  $("#vidGrid").innerHTML = C.videos.map((v) => '<button class="vid" type="button" data-yt="' + esc(v.id) + '" aria-label="Play: ' + esc(v.title) + '"><img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" loading="lazy"><span class="play"></span><span class="vt">' + esc(v.title) + "</span></button>").join("");
+  $("#ytAll").href = C.clinic.social.youtube;
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-yt]"); if (!b) return;
+    const f = el("iframe", { src: "https://www.youtube-nocookie.com/embed/" + b.dataset.yt + "?autoplay=1&rel=0", title: b.getAttribute("aria-label"), allow: "autoplay; encrypted-media; picture-in-picture", allowfullscreen: "" });
+    const wrap = el("div", { class: "vid playing" }); wrap.appendChild(f); b.replaceWith(wrap);
+    T.cta("video");
+  });
+
+  /* ---------- ayurveda ---------- */
+  $("#ayuIntro").textContent = C.ayurveda.intro;
+  $("#ayuFacts").innerHTML = C.ayurveda.facts.map((f) => '<div class="fact"><b>' + esc(f.n) + "</b><span>" + esc(f.t) + "</span></div>").join("");
+  $("#ayuBranches").innerHTML = C.ayurveda.branches.map((b) => '<span class="chip">' + esc(b) + "</span>").join("");
   $("#pkBenefits").innerHTML = C.panchakarma.benefits.map((b) => "<li>" + CHECK + "<span>" + esc(b) + "</span></li>").join("");
-  $("#therGrid").innerHTML = C.panchakarma.therapies.map((t) => '<article class="ther"><img src="' + t.img + '" alt="' + esc(t.name) + '" loading="lazy"><div class="t"><h3>' + esc(t.name) + "</h3><p>" + esc(t.text) + "</p></div></article>").join("");
+  $("#therGrid").innerHTML = C.panchakarma.therapies.map((t) => '<article class="ther"><img src="' + t.img + '" alt="' + esc(t.name) + '" loading="lazy"><div class="t"><h3>' + esc(t.name) + "</h3><p>" + esc(t.text) + "</p>" + (t.dur ? '<span class="dur">' + esc(t.dur) + "</span>" : "") + "</div></article>").join("");
 
   /* ---------- hospital ---------- */
   $("#stats").innerHTML = C.clinic.stats.map((s) => '<div class="stat"><b>' + esc(s.n) + "</b><span>" + esc(s.t) + "</span></div>").join("");
@@ -115,6 +149,7 @@
   $("#waLink").href = waHref; $("#heroWa").href = waHref;
   $("#dirLink").href = C.clinic.mapsShort || ("https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(C.clinic.mapsQuery));
   $("#ytLink").href = C.clinic.social.youtube;
+  $("#practoLink").href = C.clinic.social.practo;
   $("#reach").innerHTML = C.clinic.reach.map((r) => "<div><b>" + esc(r.how) + "</b>" + esc(r.text) + "</div>").join("");
   const iframe = el("iframe", { title: "Map to Aditya Ayurvedic Hospital", loading: "lazy", referrerpolicy: "no-referrer-when-downgrade", allowfullscreen: "" });
   iframe.src = "https://www.google.com/maps?q=" + encodeURIComponent(C.clinic.mapsQuery) + "&output=embed";
@@ -225,6 +260,10 @@
     if (b) setDoctor(b.dataset.bookDoc);
     const s = e.target.closest("[data-show-doc]");
     if (s) showDoc(s.dataset.showDoc);
+    const m = e.target.closest("[data-mode]");
+    if (m) { const r = $('#modeSeg input[value*="Online"]'); if (r) { r.checked = true; r.dispatchEvent(new Event("change", { bubbles: true })); } }
+    const vt = e.target.closest("[data-visit]");
+    if (vt) fType.value = vt.dataset.visit;
   });
 
   function setInvalid(input, bad) { input.closest(".field").classList.toggle("invalid", !!bad); return !bad; }

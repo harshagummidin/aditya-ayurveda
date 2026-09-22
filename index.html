@@ -37,6 +37,7 @@
       <a class="link" href="#womens">Women's clinic</a>
       <a class="link" href="#panchakarma">Panchakarma</a>
       <a class="link" href="#hospital">Hospital</a>
+      <a class="link" href="#videos">Videos</a>
       <a class="link" href="#visit">Visit</a>
       <a class="btn pink small" href="#book">Book<span class="long"> an appointment</span></a>
     </nav>
@@ -103,6 +104,18 @@
     </div>
   </section>
 
+  <!-- Ways to consult -->
+  <section class="sec consult" id="consult">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="gold-rule"></div>
+        <h2>Four ways to consult</h2>
+        <p>Come to the hospital, talk to the doctor on video, get a free second opinion before surgery, or have medicines couriered.</p>
+      </div>
+      <div class="consult-grid" id="consultGrid"></div>
+    </div>
+  </section>
+
   <!-- Women's clinic -->
   <section class="sec womens" id="womens">
     <div class="wrap">
@@ -138,7 +151,23 @@
         </div>
         <figure><img src="assets/panchakarma.jpg" alt="Siro Dhara: warm oil poured on the forehead" loading="lazy" data-parallax="0.1"></figure>
       </div>
+      <h3 class="sub-h">The five classical procedures</h3>
+      <div class="five" id="fiveGrid"></div>
+      <h3 class="sub-h">Allied therapies at Aditya</h3>
       <div class="ther-grid" id="therGrid"></div>
+      <div class="kshara" id="kshara"></div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="sec" id="results">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="gold-rule"></div>
+        <h2>Results you can see</h2>
+        <p>Genuine photographs of patients treated at Aditya, published with their consent. Individual results vary.</p>
+      </div>
+      <div class="res-grid" id="resGrid"></div>
     </div>
   </section>
 
@@ -155,6 +184,10 @@
         </div>
       </div>
       <ul class="fac-list" id="facList"></ul>
+      <div class="why">
+        <h3>Why families choose Aditya</h3>
+        <ol id="whyList"></ol>
+      </div>
       <div class="gallery">
         <figure><img src="assets/gallery-reception.jpg" alt="Reception and waiting area" loading="lazy"><figcaption>Reception</figcaption></figure>
         <figure><img src="assets/gallery-panchakarma-room.jpg" alt="Panchakarma treatment room with wooden droni" loading="lazy"><figcaption>Panchakarma theatre</figcaption></figure>
@@ -175,6 +208,37 @@
       </div>
       <div class="herb-grid" id="herbGrid"></div>
       <p class="muted" style="margin-top:1rem">Available at the hospital pharmacy.</p>
+    </div>
+  </section>
+
+  <!-- Videos -->
+  <section class="sec videos" id="videos">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="gold-rule"></div>
+        <h2>Dr. Raghuram on video</h2>
+        <p>Short Telugu and English talks from the channel True Ayurveda for You. Tap a card to play.</p>
+      </div>
+      <div class="vid-grid" id="vidGrid"></div>
+      <p style="margin-top:1.2rem"><a class="btn small" id="ytAll" href="#" target="_blank" rel="noopener" data-cta="youtube">All videos on YouTube</a></p>
+    </div>
+  </section>
+
+  <!-- About Ayurveda -->
+  <section class="sec" id="ayurveda">
+    <div class="wrap">
+      <div class="ayu-grid">
+        <div>
+          <div class="gold-rule"></div>
+          <h2 style="font-size:clamp(2rem,3.6vw,3.6rem)">Ayurveda, plainly</h2>
+          <p class="muted" style="margin-top:.9rem;font-size:1.2rem" id="ayuIntro"></p>
+          <div class="facts" id="ayuFacts"></div>
+        </div>
+        <div>
+          <h3 class="sub-h" style="margin-top:0">The eight branches</h3>
+          <div class="chips big" id="ayuBranches"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -211,6 +275,7 @@
           <p style="margin-top:1.2rem;display:flex;gap:.5rem;flex-wrap:wrap">
             <a class="btn small" id="dirLink" href="#" target="_blank" rel="noopener" data-cta="directions">Get directions</a>
             <a class="btn small" id="ytLink" href="#" target="_blank" rel="noopener" data-cta="youtube">YouTube channel</a>
+            <a class="btn small" id="practoLink" href="#" target="_blank" rel="noopener" data-cta="practo">Practo profile</a>
           </p>
         </div>
         <div class="map" id="map"></div>
@@ -300,7 +365,7 @@
           <textarea id="fNote" name="note" placeholder="Complaint, how long, reports you will bring, previous treatment"></textarea>
         </div>
         <div class="actions">
-          <div class="fee"><b id="feeText">₹ 300</b> consultation, pay at the hospital</div>
+          <div class="fee"><b id="feeText">₹ 150</b> consultation, pay at the hospital or by UPI for video calls</div>
           <button class="btn pink" type="submit" id="submitBtn">Confirm booking</button>
         </div>
       </form>
@@ -321,6 +386,7 @@
         <a href="#treatments">Treatments</a>
         <a href="#womens">Women's clinic</a>
         <a href="#panchakarma">Panchakarma</a>
+        <a href="#videos">Videos</a>
       </div>
       <div>
         <a href="#hospital">Hospital</a>
